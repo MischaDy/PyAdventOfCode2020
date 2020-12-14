@@ -3,7 +3,7 @@ TEST_SOLUTION = ...
 TEST_INPUT_FILE = 'test_input_day_XX.txt'
 INPUT_FILE = 'input_day_XX.txt'
 
-ARGS = [...]
+ARGS = []
 
 
 def main_part1(input_file, ):
