@@ -1,6 +1,8 @@
-from numbers import Number
+from helpers.coordinates2d import Coordinates2D
+from helpers.cyclic_list import CyclicList
 
-RUN_TEST = False
+
+RUN_TEST = True
 TEST_SOLUTION = 286
 TEST_INPUT_FILE = 'test_input_day_12.txt'
 INPUT_FILE = 'input_day_12.txt'
@@ -10,33 +12,18 @@ WAYPOINT = (10, 1)
 ARGS = []
 
 
-class CyclicList(list):
-    def __getitem__(self, i):
-        try:
-            return super().__getitem__(i)
-        except IndexError:
-            corrected_i = i % len(self)
-            return self[corrected_i]
-
-    def get_item_k_left_of(self, item, k=1):
-        return self[self.index(item) - k]
-
-    def get_item_k_right_of(self, item, k=1):
-        return self[self.index(item) + k]
-
-
 class Ship:
     COMPASS_DIRECTIONS = CyclicList('NESW')
 
     def __init__(self, waypoint=WAYPOINT):
-        self.pos = Coordinates([0, 0])
-        self.waypoint = Coordinates(waypoint)
+        self.pos = Coordinates2D([0, 0])
+        self.waypoint = Coordinates2D(waypoint)
 
     def exec_instruction(self, instruction):
         direction, value = instruction[0], int(instruction[1:])
 
         if direction in self.COMPASS_DIRECTIONS:
-            instr_coords = Coordinates.from_instruction(instruction)
+            instr_coords = Coordinates2D.from_instruction(instruction)
             self.waypoint += instr_coords
         elif direction == 'L':
             east_val, north_val = self.waypoint
@@ -70,48 +57,6 @@ class Ship:
 
     # def set_cur_pos(self, pos):
     #     self.pos = pos
-
-
-class Coordinates(list):
-    def __add__(self, other):
-        # print('--- ADD ---')
-        return self.__class__([self[0] + other[0], self[1] + other[1]])
-
-    def __iadd__(self, other):
-        # print('--- IADD ---')
-        return self.__class__([self[0] + other[0], self[1] + other[1]])
-
-    def __mul__(self, other):
-        # print('--- MUL ---')
-        if not isinstance(other, Number):
-            return super().__mul__(other)
-        return self.__class__([self[0] * other, self[1] * other])
-
-    def __rmul__(self, other):
-        # print('--- RMUL ---')
-        if not isinstance(other, Number):
-            return super().__rmul__(other)
-        return self.__class__([self[0] * other, self[1] * other])
-
-    def set_value(self, value):
-        assert len(value) == 2
-        self[0], self[1] = value
-
-    @classmethod
-    def from_instruction(cls, instruction):
-        """Only accepts compass directions"""
-        direction, value = instruction[0], int(instruction[1:])
-        if direction == 'N':
-            coord = cls([0, value])
-        elif direction == 'S':
-            coord = cls([0, -value])
-        elif direction == 'E':
-            coord = cls([value, 0])
-        elif direction == 'W':
-            coord = cls([-value, 0])
-        else:
-            raise ValueError()
-        return coord
 
 
 def main_part2(input_file):

@@ -1,6 +1,5 @@
-import os
 from itertools import combinations
-from functools import reduce
+from helpers.misc_functions import prod
 
 
 RUN_TEST = False
@@ -21,10 +20,6 @@ def main(input_file, combo_length):
     solution = prod(solution_num_combo)  # solution_num_combo[0] * solution_num_combo[1]
 
     return solution
-
-
-def prod(factors):
-    return reduce(lambda a, b: a * b, factors, 1)
 
 
 if __name__ == '__main__':
