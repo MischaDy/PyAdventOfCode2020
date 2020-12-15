@@ -15,11 +15,17 @@ def main(placeholder):
 
 def choose_dir():
     chosen_dir = None
+    is_dir_unavailable = True
+    is_dir_empty = False
     available_dirs = list(map(lambda string: string.lower(), filter(os.path.isdir, os.listdir('.'))))
-    while chosen_dir != '' and chosen_dir not in available_dirs:
+    while not is_dir_empty and is_dir_unavailable:
         print("\nPlease choose one of the following directories to rename or press Enter to exit.")
         print('\n'.join(available_dirs))
         chosen_dir = input().strip().lower()
+        is_dir_unavailable = chosen_dir not in available_dirs
+        is_dir_empty = chosen_dir == ''
+        if not is_dir_empty and is_dir_unavailable:
+            print('ERROR')
     return chosen_dir
 
 
