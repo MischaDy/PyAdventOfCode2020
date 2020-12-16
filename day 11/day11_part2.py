@@ -1,5 +1,3 @@
-from itertools import product
-
 RUN_TEST = False
 TEST_SOLUTION = 26
 TEST_INPUT_FILE = 'test_input_day_11.txt'
@@ -19,8 +17,6 @@ def main_part2(input_file, min_num_seats_to_make_empty):
     iteration_num = 0
     while cur_seat_occupations != prev_seat_occupations:
         print(iteration_num)
-        # print('\n', iteration_num)
-        # print_seat_occupations(cur_seat_occupations)
         prev_seat_occupations = cur_seat_occupations
         cur_seat_occupations = evolve(cur_seat_occupations, min_num_seats_to_make_empty)
         iteration_num += 1
@@ -135,22 +131,6 @@ def get_diagonal(row_index, pos_index, seat_occupations, dim, mode):
                 for i in range(dim - max(topleft_pos))]
 
     return diag
-
-
-# def count_visible_occupied_seats(row_index, index, seat_occupations, dim):
-#     # subtract this at end to not count this seat itself
-#     is_cur_seat_occ = int(seat_occupations[row_index][index] == '#')
-#
-#     horiz_count = any([seat == '#' for seat in seat_occupations[row_index]])
-#     vert_count = any([seat_occupations[cur_row_index][index] == '#' for cur_row_index in range(dim)])
-#     topleft_bottomright_count = any(map(lambda seat: seat == '#',
-#                                         get_diagonal(row_index, index, seat_occupations, dim, '\\')))
-#     bottomleft_topright_count = any(map(lambda seat: seat == '#',
-#                                         get_diagonal(row_index, index, seat_occupations, dim, '/')))
-#
-#     return horiz_count + vert_count + topleft_bottomright_count + bottomleft_topright_count - 4*is_cur_seat_occ
-
-
 
 
 def count_total_occupied_seats(seat_occupations):

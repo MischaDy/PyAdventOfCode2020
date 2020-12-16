@@ -122,7 +122,6 @@ def read_fields(passport_fields):
     return dict(map(lambda string: string.split(':'), passport_fields))
 
 
-
 if __name__ == '__main__':
     if RUN_TEST:
         _temp_run_checks()

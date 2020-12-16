@@ -17,7 +17,7 @@ def main(input_file, combo_length):
     nums = list(map(int, lines))
     num_combinations = combinations(nums, combo_length)
     solution_num_combo = next(filter(lambda num_combo: sum(num_combo) == 2020, num_combinations))
-    solution = prod(solution_num_combo)  # solution_num_combo[0] * solution_num_combo[1]
+    solution = prod(solution_num_combo)
 
     return solution
 
@@ -30,4 +30,3 @@ if __name__ == '__main__':
         solution = main(INPUT_FILE, COMBO_LENGTH)
 
     print(solution)
-

@@ -27,7 +27,7 @@ def analyze_rule(rule):
 
 
 def xor(a, b):
-    # Only valid for boolean inputs
+    # Only/mainly valid for boolean inputs
     return a ^ b
 
 

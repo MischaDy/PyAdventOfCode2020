@@ -48,7 +48,7 @@ def bin_search(spec, high_bound):
         else:
             low_bound = low_bound + int((high_bound - low_bound + 1) / 2)
 
-    return low_bound  # should = high_bound
+    return low_bound  # this should = high_bound
 
 
 if __name__ == '__main__':

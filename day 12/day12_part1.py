@@ -39,30 +39,6 @@ class Ship:
     def get_cur_pos(self):
         return self.pos
 
-    # def set_cur_pos(self, pos):
-    #     self.pos = pos
-
-
-# class Coordinates2D(tuple):
-#     def __add__(self, other):
-#         return self.__class__([self[0] + other[0], self[1] + other[1]])
-#
-#     @classmethod
-#     def from_instruction(cls, instruction):
-#         """Only accepts compass directions"""
-#         direction, value = instruction[0], int(instruction[1:])
-#         if direction == 'N':
-#             coord = cls([0, value])
-#         elif direction == 'S':
-#             coord = cls([0, -value])
-#         elif direction == 'E':
-#             coord = cls([value, 0])
-#         elif direction == 'W':
-#             coord = cls([-value, 0])
-#         else:
-#             raise ValueError()
-#         return coord
-
 
 def main_part1(input_file, facing_dir):
     with open(input_file) as file:

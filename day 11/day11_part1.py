@@ -18,11 +18,9 @@ def main_part1(input_file, min_num_seats_to_make_empty):
     prev_seat_occupations = None
     cur_seat_occupations = list(map(list, seat_occupations))
 
-    # print_seat_occupations(prev_seat_occupations)
     iteration_num = 0
     while cur_seat_occupations != prev_seat_occupations:
         print(iteration_num)
-        # print_seat_occupations(cur_seat_occupations)
         prev_seat_occupations = cur_seat_occupations
         cur_seat_occupations = evolve(cur_seat_occupations, min_num_seats_to_make_empty)
         iteration_num += 1
@@ -56,14 +54,6 @@ def count_adjacent_occupied_seats(row_index, pos_index, seat_occupations, dim):
     # relative_positions_to_count
     rel_pos_to_count = list(product([-1, 0, 1], repeat=2))
     rel_pos_to_count.remove((0, 0))  # don't consider position itself, only neighbors
-
-    # for tup_ind, index in enumerate([row_index, index]):
-    #     if index == 0:
-    #         rel_pos_to_count = list(filter(lambda tup: tup[tup_ind] != -1,
-    #                                   rel_pos_to_count))
-    #     elif index == dim:
-    #         rel_pos_to_count = list(filter(lambda tup: tup[tup_ind] != 1,
-    #                                   rel_pos_to_count))
 
     potential_abs_pos_to_count = list(map(lambda tup: (row_index + tup[0], pos_index + tup[1]),
                                           rel_pos_to_count))

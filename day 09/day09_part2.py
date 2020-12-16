@@ -28,10 +28,6 @@ def main_part2(input_file, *args):
     else:
         raise RuntimeError('No adequate set found!')
 
-    # ? first: filter for sets containing number greater than invalid_number
-    # next(filter(lambda set_: sum(set_) == invalid_number, contiguous_sets))
-
-    #solution_contiguous_sets = next(filter(lambda set_: sum(set_) == invalid_number, contiguous_sets))
     solution = min(solution_contiguous_sets) + max(solution_contiguous_sets)
     return solution
 
@@ -39,13 +35,9 @@ def main_part2(input_file, *args):
 def gen_contiguous_sets(nums):
     len_nums = len(nums)
     for first_index in range(0, len_nums - 1):  # leave 2 nums 'space' at the end
-        for second_index in range(first_index + 1, len_nums):  # leave 2 nums space at start
+        for second_index in range(first_index + 1, len_nums):  # leave 2 nums 'space' at start
             yield nums[first_index: second_index + 1]  # include last element
-#
-#
-# for y in range(5 - 1):
-#     for y in range(y + 2, 5 + 1):
-#         print(nums[y: y])
+
 
 if __name__ == '__main__':
     if RUN_TEST:

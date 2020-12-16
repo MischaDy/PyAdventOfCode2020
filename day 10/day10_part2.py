@@ -38,7 +38,7 @@ def main_part2(input_file, ):
     all_but_last_joltages = joltages[:-1]
     diffs = list(map(lambda tup: tup[0] - tup[1], zip(all_but_first_joltages, all_but_last_joltages)))
 
-    # is ignoring 2s correct???
+    # is ignoring 2s correct? --> turns out: yes, there are none
     ones_diffs = list(filter(lambda diff_sublist: diff_sublist[0] == 1, split_list(diffs, 3)))
     ones_diffs_lens = list(map(len, ones_diffs))
 
@@ -80,43 +80,3 @@ if __name__ == '__main__':
     else:
         solution = main_part2(INPUT_FILE, *ARGS)
         print(solution)
-
-
-
-
-# def is_valid_sequence(nums):
-#     nums = sorted(nums)
-#     all_but_first_nums = nums[1:]
-#     all_but_last_nums = nums[:-1]
-#     diffs = list(map(lambda tup: tup[0] - tup[1], zip(all_but_first_nums, all_but_last_nums)))
-#
-#     return len(list(filter(lambda diff: diff > 3, diffs))) == 0
-#
-#
-# def my_test():
-#     from itertools import combinations
-#     from functools import reduce
-#
-#     LIM = 12
-#     for n in range(2, LIM+1):
-#         nums = list(range(n))
-#
-#         nums_combos = [list(combinations(nums[1:-1], length)) for length in range(n - 1)]
-#         nums_combos = flatten_one_level(nums_combos, reduce)
-#
-#         seqs = map(lambda nums_combo: remove_all(nums[:], nums_combo), nums_combos)
-#         valid_seqs = filter(is_valid_sequence, seqs)
-#         print(len(list(valid_seqs)))
-#
-#
-# def remove_all(list_, elements):
-#     # remove all elements from list_
-#     list(map(list_.remove, elements))
-#     return list_
-#
-#
-# def flatten_one_level(list_, reduce):
-#     return reduce(lambda l1, l2: l1 + l2, list_, [])
-#
-#
-# my_test()

@@ -55,9 +55,6 @@ class Ship:
     def get_cur_pos(self):
         return self.pos
 
-    # def set_cur_pos(self, pos):
-    #     self.pos = pos
-
 
 def main_part2(input_file):
     with open(input_file) as file:

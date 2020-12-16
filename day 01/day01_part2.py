@@ -30,4 +30,3 @@ if __name__ == '__main__':
         solution = main(INPUT_FILE, COMBO_LENGTH)
 
     print(solution)
-

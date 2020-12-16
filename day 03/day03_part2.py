@@ -9,8 +9,7 @@ TEST_INPUT_FILE = 'test_input_day_03.txt'
 INPUT_FILE = 'input_day_03.txt'
 
 START = Coordinates2D((0, 0))  # top left corner
-TRAJECTORIES = list(map(Coordinates2D,
-                        [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]))
+TRAJECTORIES = list(map(Coordinates2D, [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]))
 
 ARGS = [START, TRAJECTORIES]
 

@@ -1,8 +1,5 @@
-from functools import lru_cache, reduce
-from itertools import combinations
-from math import ceil, sqrt
+from functools import reduce
 
-import numpy as np
 
 RUN_TEST = False
 TEST_SOLUTIONS = [3417, 1068781, 754018, 779210, 1261476, 1202161486]
@@ -49,7 +46,6 @@ def chinese_remainder(remainders, divisors):
     as_ = list(map(lambda d: int(M / d), divisors))
     eea_results = map(lambda tup: extended_gcd(*tup), zip(as_, divisors))
     is_ = [result[0] % div for result, div in zip(eea_results, divisors)]
-    # is_ = list(map(lambda tup: tup[0] % tup[1], zip(as_, divisors)))
     Z = sum(map(prod, zip(is_, remainders, as_)))
     x = Z % M
     return x
@@ -73,36 +69,6 @@ def extended_gcd(a, b):
 
     # return Bezout coefficient 1, 2, and the gcd
     return old_s, old_t, old_r
-
-
-
-# @lru_cache
-# def is_prime(n):
-#     for possible_div in range(2, ceil(sqrt(n)) + 1):
-#         if n % possible_div == 0:
-#             return False
-#     return True
-
-
-# def get_next_hit_timestamp_after(timestamp, factor):
-#     return ceil(timestamp / factor) * factor
-
-# def are_pairwise_coprime(nums):
-#     nums_combos = list(combinations(nums, 2))
-#     return all(map(lambda tup: are_coprime(*tup), nums_combos))
-#
-#
-# def are_coprime(a, b):
-#     return gcd(a, b) == 1
-#
-#
-# def gcd(a, b):
-#     if a == b:
-#         return a
-#     elif a > b:
-#         return gcd(a - b, b)
-#     else:
-#         return gcd(a, b - a)
 
 
 if __name__ == '__main__':
