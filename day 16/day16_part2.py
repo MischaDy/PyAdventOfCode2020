@@ -33,8 +33,8 @@ def determine_field_names(tickets, field_rules):
         for ind, value in enumerate(ticket):
             allowed_fields_for_ind = ind_to_fields_dict[ind]
             # don't check indices with one allowed value. assume that it will be legal anyways.
-            # if len(allowed_fields_for_ind) == 1:
-            #     continue
+            if len(allowed_fields_for_ind) == 1:
+                continue
 
             for field in allowed_fields_for_ind.copy():
                 # check if value excludes field as possibility and update dict accordingly
