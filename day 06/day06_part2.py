@@ -1,5 +1,7 @@
-RUN_TEST = True
-TEST_SOLUTION = ...
+from functools import reduce
+
+RUN_TEST = False
+TEST_SOLUTION = 6
 TEST_INPUT_FILE = 'test_input_day_06.txt'
 INPUT_FILE = 'input_day_06.txt'
 
@@ -8,11 +10,15 @@ ARGS = []
 
 def main_part2(input_file, ):
     with open(input_file) as file:
-        lines = list(map(lambda line: line.rstrip(), file.readlines()))
+        data = file.read()
 
-    ...
-
-    solution = ...
+    groups = data.split('\n\n')
+    # one set of answers per group member
+    groups = map(lambda group: list(map(set, group.split('\n'))),
+                 groups)
+    intersections = map(lambda group: reduce(lambda s1, s2: s1.intersection(s2), group),
+                        groups)
+    solution = sum(map(len, intersections))
     return solution
 
 

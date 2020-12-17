@@ -1,5 +1,5 @@
-RUN_TEST = True
-TEST_SOLUTION = ...
+RUN_TEST = False
+TEST_SOLUTION = 11
 TEST_INPUT_FILE = 'test_input_day_06.txt'
 INPUT_FILE = 'input_day_06.txt'
 
@@ -8,11 +8,13 @@ ARGS = []
 
 def main_part1(input_file, ):
     with open(input_file) as file:
-        lines = list(map(lambda line: line.rstrip(), file.readlines()))
+        data = file.read()
 
-    ...
-
-    solution = ...
+    groups = data.split('\n\n')
+    # create single string per group, then cast to set, then count elements
+    lens = map(lambda group: len(set(''.join(group.split('\n')))),
+               groups)
+    solution = sum(lens)
     return solution
 
 
