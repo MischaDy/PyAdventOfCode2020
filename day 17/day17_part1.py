@@ -14,65 +14,6 @@ ITERATIONS = 6
 ARGS = [RULES, ITERATIONS]
 
 
-# class Layer:
-#     def __init__(self, init_state=None, size=None):
-#         if size is not None:
-#             self.state = [['.' for x in range(size)]
-#                           for y in range(size)]
-#         else:
-#             self.state = init_state
-#
-#     def __len__(self):
-#         return len(self.state)
-#
-#
-# class PocketDim:
-#     def __init__(self, z0_init_state, rules):
-#         self.layers = [Layer(z0_init_state)]
-#         self.rules = rules
-#
-#     def get_layer(self, z_index):
-#         # layers indexed symmetrically around the "middle" one
-#         shifted_z_ind = z_index + self.get_num_layers() // 2
-#         if 0 <= shifted_z_ind < self.get_num_layers():
-#             return self.layers[shifted_z_ind]
-#
-#         if shifted_z_ind < 0:
-#             num_iterations = 0 - shifted_z_ind
-#             ind = 0
-#         else:
-#             num_iterations = shifted_z_ind - self.get_num_layers()
-#             ind = -1
-#         new_neg_layers = [Layer(size=self.get_layer_size()) for _ in range(num_iterations)]
-#         new_pos_layers = [Layer(size=self.get_layer_size()) for _ in range(num_iterations)]
-#         self.layers = new_neg_layers + self.layers + new_pos_layers
-#         return self.layers[ind]
-#
-#     def get_index_range(self):
-#         pass
-#
-#     def get_num_layers(self):
-#         return len(self.layers)
-#
-#     def get_layer_size(self):
-#         # size of all layers should be the same; returned as side length
-#         return len(self.z0)
-#
-#     def perform_cycle(self):
-#         for z, layers in enumerate(self.layers, start=-1):
-#             new_layer = layers.copy()
-#
-#             for x, row in enumerate(layers):
-#                 for y, cube_state in enumerate(row):
-#                     pass
-#
-#     def count_active_cubes(self):
-#         num_active_cubes = 0
-#         for layers in self.layers.values():
-#             num_active_cubes += sum(map(lambda row: row.count('#'), layers))
-#         return num_active_cubes
-
-
 # TODO: also *remove* rows/layers, if outer hull is "double-empty"?
 def main_part1(input_file, rules, iterations):
     with open(input_file) as file:

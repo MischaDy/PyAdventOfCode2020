@@ -19,5 +19,15 @@ def _split_string_worker(strings_list, seps):
     return _split_string_worker(new_strings_list, seps)
 
 
+def flatten_list_n_levels(list_, n):
+    if n == 0:
+        return list_
+
+    flattened_list = flatten_list_1_level(list_)
+    if n == 1:
+        return flattened_list
+    return flatten_list_n_levels(flattened_list, n - 1)
+
+
 def flatten_list_1_level(list_):
     return sum(list_, start=[])
