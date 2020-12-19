@@ -18,28 +18,27 @@ def main_part2(input_file, operators):
 
     results = []
     for expression in expressions:
-        # syntax_tree = parse(expression, operators)  # is a list
-        results.append(myprocess(list(expression), operators))
+        results.append(process(list(expression), operators))
 
     solution = sum(results)
     return solution
 
 
-def myprocess(expr, operators):
+def process(expr, operators):
     if len(expr) == 1:
         return int(expr[0])
 
     elif expr[0] == '(':
         last_closing_paren_ind = get_matching_closing_paren_ind(expr)
         subexpr = expr[1: last_closing_paren_ind]
-        new_expr = [str(myprocess(subexpr, operators))] + expr[last_closing_paren_ind+1:]
-        return myprocess(new_expr, operators)
+        new_expr = [str(process(subexpr, operators))] + expr[last_closing_paren_ind + 1:]
+        return process(new_expr, operators)
 
     elif expr[2] == '(':
         last_closing_paren_ind = get_matching_closing_paren_ind(expr)
         subexpr = expr[3: last_closing_paren_ind]
-        new_expr = expr[:2] + [str(myprocess(subexpr, operators))] + expr[last_closing_paren_ind+1:]
-        return myprocess(new_expr, operators)
+        new_expr = expr[:2] + [str(process(subexpr, operators))] + expr[last_closing_paren_ind + 1:]
+        return process(new_expr, operators)
 
     else:
         arg1 = expr[0]
@@ -48,9 +47,9 @@ def myprocess(expr, operators):
         arg2 = expr[2]
         if op == '+':
             new_expr = [str(func(int(arg1), int(arg2)))] + expr[3:]
-            return myprocess(new_expr, operators)
+            return process(new_expr, operators)
         else:  # op = '*'
-            remaining_expr_result = myprocess(expr[2:], operators)
+            remaining_expr_result = process(expr[2:], operators)
             return func(int(arg1), remaining_expr_result)
 
 
@@ -63,10 +62,6 @@ def get_matching_closing_paren_ind(expr):
             num_unclosed_parens -= 1
             if num_unclosed_parens == 0:
                 return ind
-
-
-def split_into_group(expr):
-    pass
 
 
 if __name__ == '__main__':
